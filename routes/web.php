@@ -26,3 +26,6 @@ require __DIR__.'/auth.php';
 Route::get('/sach','App\Http\Controllers\ViduLayoutController@sach');
 Route::get('/sach/theloai/{id}','App\Http\Controllers\ViduLayoutController@theloai');
 Route::get('/sach/chitiet/{id}', 'App\Http\Controllers\ViduLayoutController@chitiet');
+
+# đường dẫn để nhận yêu cầu từ AJAX:
+Route::post('/bookview', 'App\Http\Controllers\BookController@bookview')->name("bookview");
