@@ -1,5 +1,5 @@
 <x-book-layout>
-    <x-slot name="'title">
+    <x-slot name="title">
         Sách
     </x-slot>
     <div class='list-book'>
