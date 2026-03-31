@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/','App\Http\Controllers\ViduLayoutController@sach');
+Route::get('/accountpanel','App\Http\Controllers\AccountController@accountpanel')
+            ->middleware('auth')->name("account");
+Route::post('/saveinfo','App\Http\Controllers\AccountController@saveaccountinfo')
+            ->middleware('auth')->name('saveinfo');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
