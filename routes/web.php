@@ -26,3 +26,4 @@ require __DIR__.'/auth.php';
 Route::get('/sach','App\Http\Controllers\ViduLayoutController@sach');
 Route::get('/sach/theloai/{id}','App\Http\Controllers\ViduLayoutController@theloai');
 Route::get('/sach/chitiet/{id}', 'App\Http\Controllers\ViduLayoutController@chitiet');
+Route::get('/testemail','App\Http\Controllers\ViduController@testemail');
