@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth; // Cần thiết để lấy ID người dùng
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -137,7 +138,18 @@ class BookController extends Controller
                     ];
                 }
                 DB::table("chi_tiet_don_hang")->insert($detail);
+                // --- Gửi email thông báo ---
+                // 1. Lấy thông tin người dùng đang đăng nhập
+                $user = Auth::user();
 
+                // 2. Lấy chi tiết đơn hàng vừa tạo (bám sát code slide trang 12)
+                $chiTiet = DB::select("select * from chi_tiet_don_hang c, sach s
+                                       where c.sach_id = s.id
+                                       and c.ma_don_hang = ?", [$id_don_hang]);
+
+                // 3. Thực hiện gửi mail báo thành công
+                $user->notify(new \App\Notifications\TestSendEmail($chiTiet));
+                // --- Gửi email thông báo xong ---
                
                 session()->forget('cart');
             });
